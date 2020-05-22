@@ -1,0 +1,28 @@
+This folder contains all the CSP environment benchmarks that have been evaluated in the Case study section of the paper.
+
+In detail, this folder contains:
+
+1. CSPFiles/ : Folder that contains unflattened CSP for the arbiter case-study and thermostat case study
+2. *.csp: Flattened CSP for all benchmarks analysed in the paper
+---- exampleN.csp : Illustrative Example N from Section 7.2.1
+---- thermostatflat.csp : Flattened thermostat obtained by flattening CSPFiles/therostat.csp (Section 7.2.2)
+---- arbiterNflat.csp: Flattened arbiter with N processes obtained by flattening CSPFiles/arbiterN.csp (Section 7.2.3)
+
+
+-----------------------------
+Flattening an unflattened CSP
+-----------------------------
+
+This is done by using ../pycsp/fdrextract.py
+
+../pycsp/fdrextract.py is a translator from FDR CSPM (unflattened CSP)  to simple CSP (flattened CSP) format.
+
+It is run as follows:
+
+python ../pycsp/fdrextract.py <filename> <environment-process-name>
+
+E.g.
+
+python ../pycsp/fdrextract.py CSPFiles/thermostat.csp ENV
+
+------------------------------

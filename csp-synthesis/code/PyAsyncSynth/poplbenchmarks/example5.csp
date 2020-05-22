@@ -1,0 +1,10 @@
+
+chan cA1 : {a0};
+
+initial E;
+
+E  := a0-> E0;
+E0 := b -> E;
+
+# safety_spec = 'false'
+# liveness_spec = 'FG(b=0)'

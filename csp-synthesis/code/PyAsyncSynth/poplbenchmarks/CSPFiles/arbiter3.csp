@@ -1,0 +1,21 @@
+---- COMMENT BEGINS
+---- Name of processes always begins with a capital alphabet
+---- Name of events begins with small alphabet
+---- Name of private events begin with the letter i. DO NOT USE i as the initital letter of any public event 
+---- COMMENT ENDS
+
+
+PROCESSES = {0..2}
+
+channel request, grant, release: PROCESSES
+
+P(0) = request.0 -> grant.0 -> release.0 -> P(0)
+
+P(1) = request.1 -> grant.1 -> release.1 -> P(1)
+
+P(2) = request.2 -> grant.2 -> release.2 -> P(2)
+
+ENV = P(0) ||| P(1) ||| P(2)
+
+
+
