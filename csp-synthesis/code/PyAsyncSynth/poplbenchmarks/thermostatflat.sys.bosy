@@ -1,8 +1,0 @@
-{
-	"semantics": "moore",
-	"inputs": ["x_switchHeatOn", "x_switchHeatOff", "x_justRight", "x_warm", "x_cold", "x_switchAcOn", "x_switchAcOff"],
-	"outputs": ["y_set_x_switchHeatOn", "y_set_x_switchHeatOff", "y_set_x_justRight", "y_set_x_warm", "y_set_x_cold", "y_set_x_switchAcOn", "y_set_x_switchAcOff"],
-	"assumptions": [],
-	"guarantees": [],
-	"automaton": "./../poplbenchmarks/thermostatflat.sys.spin"
-}
