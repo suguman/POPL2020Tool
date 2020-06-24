@@ -1,7 +1,7 @@
 
 
 ##BoSy Location w.r.t. this file. 
-BOSYPATH = "../bosy"
+#BOSYPATH = "../bosy"
 
 BOSYPATH = "../../../bosy"
 
@@ -186,8 +186,10 @@ def write_bosy_output(final_aut, spin_file, bosy_file):
 
 
 def run_bosy(bosy_file, qbf_backend, tout=100):
-    os.chdir(BOSYPATH)
-    cmd = ['./bosy.sh', './.build-sys/']
+    #os.chdir(BOSYPATH)
+    cmd = [BOSYPATH+'/bosy.sh', BOSYPATH, './.build-sys']
+
+    #cmd = ['./bosy.sh', './.build-sys/']
     #cmd += '--semantics mealy '
     
     if (qbf_backend):
@@ -217,16 +219,8 @@ def run_bosy(bosy_file, qbf_backend, tout=100):
     cmd += [bosy_file]
     # cmd_array = cmd.split()
 
-    """
-    proc = subprocess.Popen("exec " + cmd, shell=True)
-    try:
-        proc.run(cmd, timeout=tout)
-    except TimeoutExpired:
-        print("TimeOut")
-        #os.killpg(os.getpgid(p.pid), signal.SIGTERM)
-        proc.kill()
-
-    """
+    #print(cmd)
+    
     try:
         subprocess.run(cmd, timeout=tout)
     except subprocess.TimeoutExpired:
@@ -234,46 +228,6 @@ def run_bosy(bosy_file, qbf_backend, tout=100):
         #os.killpg(os.getpgid(p.pid), signal.SIGTERM)
         #p.kill()
     
-
-# def run_bosy(bosy_file, qbf_backend, timeout=10):
-#     os.chdir(BOSYPATH)
-#     cmd = './bosy.sh ./.build-sys/ '
-#     #cmd += '--semantics mealy '
-    
-#     if qbf_backend:
-#         cmd += '--backend input-symbolic '
-#     else:
-#         cmd += '--backend explicit-one-hot-inputs '
-        
-#     cmd += '--semantics moore '
-
-#     # search strategy
-#     #cmd += '--strategy linear '
-#     cmd += '--strategy exponential '
-
-#     #output options
-#     #cmd += '--synthesize --target smv '
-#     #cmd += '--synthesize --target all '
-#     cmd += '--synthesize --target dot '
-
-#     #backend options
-#     #cmd += '--backend input-symbolic '
-#     #cmd += '--backend explicit '
-#     #cmd += '--backend state-symbolic '
-    
-#     cmd += '--statistics '
-#     cmd += '--player system '
-#     cmd += bosy_file
-#     # cmd_array = cmd.split()
-#     print("Starting SUBPROCESS with TIMEOUT ", timeout)
-#     p = subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid)
-#     try:    
-#         p.wait(timeout)
-#     except subprocess.TimeoutExpired:
-#         print("TimeOut")
-#         os.killpg(os.getpgid(p.pid), signal.SIGTERM)
-#         p.kill()
-
 
 # API for TWA: twa_graph: https://spot.lrde.epita.fr/doxygen/classspot_1_1twa__graph.html
 def build_bosy_instance(safety_spec, liveness_spec, bosy_file, spin_file, spin_file_temp):
@@ -1531,6 +1485,7 @@ def main(args):
         print("-s is: " + str(args.safety_spec))
         print("-l is: " + str(args.liveness_spec))
         print("-o is: " + str(args.base_file_path))
+        print("-o is: " + str(args.env_file))
         print("-v is: " + str(args.verbosity))
     
     env_file = args.env_file
